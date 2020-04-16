@@ -6,10 +6,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,7 +63,21 @@ public final class QueryUtils {
 
     }
 
-    private String getJsonResponse(InputStream inputStream) {
+    private String getJsonResponse(InputStream inputStream) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        if(inputStream == null)
+            return null;
+        else{
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+        BufferedReader br = new BufferedReader(inputStreamReader);
+        String temp = br.readLine();
+        while(temp!=null)
+        {
+            stringBuilder.append(temp);
+            temp = br.readLine();
+        }}
+        String response = stringBuilder.toString();
+        return response;
     }
 
 
