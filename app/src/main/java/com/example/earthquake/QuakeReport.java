@@ -20,8 +20,8 @@ public class QuakeReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        earthquakes = QueryUtils.extractEarthquakes();
+        String url_website_usgs = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+        earthquakes = QueryUtils.extractEarthquakes(url_website_usgs);
 
 
         final ListView listView = findViewById(R.id.list_view);
