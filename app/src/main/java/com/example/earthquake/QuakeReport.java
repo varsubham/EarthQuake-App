@@ -28,10 +28,11 @@ public class QuakeReport extends AppCompatActivity {
         new myasyncclass().execute(url_website_usgs);
 
         final ListView listView = findViewById(R.id.list_view);
+
 //        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(QuakeReport.this, android.R.layout.simple_list_item_1, earthquakes);
 //        CustomAdapter customAdapter = new CustomAdapter(QuakeReport.this, earthquakes);
 //        listView.setAdapter(customAdapter);
-
+//
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
