@@ -66,9 +66,7 @@ public final class QueryUtils {
 
     private static String getJsonResponse(InputStream inputStream) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        if(inputStream == null)
-            return null;
-        else{
+        if(inputStream != null){
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
         BufferedReader br = new BufferedReader(inputStreamReader);
         String temp = br.readLine();
