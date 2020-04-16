@@ -6,6 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +19,8 @@ import java.util.Date;
  */
 public final class QueryUtils {
 
-   
+    final String url_website = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -29,7 +34,34 @@ public final class QueryUtils {
      * Return a list of {@link } objects that has been built up from
      * parsing a JSON response.
      */
+    public String makehttprequest(URL url) throws IOException {
+        String jsonresponse="";
+        HttpURLConnection httpURLConnection = null;
+        InputStream inputStream = null;
+        try {
 
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setReadTimeout(10000);
+            httpURLConnection.setConnectTimeout(15000);
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.connect();
+            inputStream = httpURLConnection.getInputStream();
+            jsonresponse = getJsonResponse(inputStream);
+            }
+        catch (IOException e){}
+
+        finally {
+            if(httpURLConnection != null)
+                httpURLConnection.disconnect();
+            if(inputStream != null)
+                inputStream.close();
+        }
+        return jsonresponse;
+
+    }
+
+    private String getJsonResponse(InputStream inputStream) {
+    }
 
 
     public static ArrayList<EarthquakeClass> extractEarthquakes() {
