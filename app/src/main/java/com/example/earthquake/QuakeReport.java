@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class QuakeReport extends AppCompatActivity {
     ArrayList<EarthquakeClass> earthquakes = new ArrayList<>();
-    String  url_website_usgs = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+    final String  url_website_usgs = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
