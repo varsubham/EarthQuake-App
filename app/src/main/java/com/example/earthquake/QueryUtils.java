@@ -1,5 +1,6 @@
 package com.example.earthquake;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -92,6 +93,7 @@ public final class QueryUtils {
 
     public static ArrayList<EarthquakeClass> extractEarthquakes(String USGC_WEBSITE) {
 
+       
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<EarthquakeClass> earthquakes = new ArrayList<>();
 
@@ -99,7 +101,7 @@ public final class QueryUtils {
         String jsonresponse=null;
         try{
         jsonresponse = makehttprequest(url_new);}
-        catch (IOException e){}
+        catch (IOException e){Log.e("log_tag", "Problem bulding url", e);}
 
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
