@@ -63,6 +63,7 @@ public class QuakeReport extends AppCompatActivity {
         protected ArrayList<EarthquakeClass> doInBackground(String... strings) {
             ArrayList<EarthquakeClass> earth;
             earth = QueryUtils.extractEarthquakes(url_website_usgs);
+            earthquakes = earth;
             return earth;
         }
     }
