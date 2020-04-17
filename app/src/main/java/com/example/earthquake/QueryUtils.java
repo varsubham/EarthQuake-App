@@ -40,6 +40,7 @@ public final class QueryUtils {
      */
     public static String makehttprequest(URL url) throws IOException {
         String jsonresponse="";
+        if(url == null)return jsonresponse;
         HttpURLConnection httpURLConnection = null;
         InputStream inputStream = null;
         try {
@@ -49,10 +50,13 @@ public final class QueryUtils {
             httpURLConnection.setConnectTimeout(15000);
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.connect();
+            if(httpURLConnection.getResponseCode() == 200){
             inputStream = httpURLConnection.getInputStream();
-            jsonresponse = getJsonResponse(inputStream);
+            jsonresponse = getJsonResponse(inputStream);}
+            else
+                Log.e("log_tag", "Error response code" +httpURLConnection.getResponseCode());
             }
-        catch (IOException e){}
+        catch (IOException e){Log.e("log_tag", "IOException error in makehttp", e);}
 
         finally {
             if(httpURLConnection != null)
@@ -75,8 +79,8 @@ public final class QueryUtils {
             stringBuilder.append(temp);
             temp = br.readLine();
         }}
-        String response = stringBuilder.toString();
-        return response;
+
+        return stringBuilder.toString();
     }
     private static URL createurl(String url_website){
         URL url=null;
