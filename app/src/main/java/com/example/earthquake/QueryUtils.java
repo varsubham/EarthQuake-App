@@ -82,7 +82,7 @@ public final class QueryUtils {
         URL url=null;
         try{
         url = new URL(url_website);}
-        catch (MalformedURLException m){}
+        catch (MalformedURLException m){Log.e("log_tag", "Problem bulding url", m);}
         return url;
     }
 
